@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import { RefObject } from '@mui/x-internals/types';
 import useLazyRef from '@mui/utils/useLazyRef';
@@ -271,6 +272,11 @@ export const useGridDataSourceBase = <Api extends GridPrivateApiCommunity>(
       apiRef.current.dataSource.cache.clear();
       apiRef.current.dataSource.fetchRows();
     }
+
+    return () => {
+      // ignore the current request on unmount
+      lastRequestId.current += 1;
+    };
   }, [apiRef, props.dataSource]);
 
   return {

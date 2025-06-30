@@ -9,7 +9,10 @@ declare global {
   interface MUIEnv {
     JSDOM?: string;
     BROWSER?: string;
+    PLAYWRIGHT_SERVER_WS?: string;
     CI?: string;
+    // Enable performance tracing in charts performance tests
+    TRACE?: string;
   }
 }
 
@@ -31,7 +34,13 @@ const getProjects = () => {
 
   return [
     `packages/*/vitest.config.${fill}.mts`,
-    ...(fill.includes('jsdom') ? [`docs/vitest.config.${fill}.mts`] : []),
+    ...(fill === 'jsdom'
+      ? [
+          `docs/vitest.config.${fill}.mts`,
+          // We also run node tests when running in jsdom mode
+          `packages/*/vitest.config.node.mts`,
+        ]
+      : []),
   ];
 };
 

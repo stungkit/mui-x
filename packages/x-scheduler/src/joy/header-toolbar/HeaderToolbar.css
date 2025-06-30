@@ -1,14 +1,6 @@
 @import '../styles/tokens.css';
 
 .HeaderToolbarContainer {
-  --toolbar-text: var(--gray-9);
-}
-
-.mode-dark .HeaderToolbarContainer {
-  --toolbar-text: var(--gray-2);
-}
-
-.HeaderToolbarContainer {
   display: flex;
   gap: var(--space-4);
   width: 100%;
@@ -19,13 +11,11 @@
   font-weight: var(--font-weight-1);
 }
 
-.HeaderToolbarButton {
-  border: 0;
+.joy .HeaderToolbarButton {
   background: var(--surface);
   user-select: none;
   padding: var(--space-3) var(--space-4);
-  color: var(--toolbar-text);
-  border: 1px solid var(--gray-2);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-4);
   font-size: inherit;
   line-height: inherit;
